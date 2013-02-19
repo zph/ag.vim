@@ -11,10 +11,10 @@ you to run ag from vim, and shows the results in a split window.
 
 You have to install [ag](https://github.com/ggreer/the_silver_searcher), of course.
 
-Usually it's a package named 'the_silver_searcher', but it should install
+Usually it's a package named '[the_silver_searcher](https://github.com/ggreer/the_silver_searcher)', but it should install
 easily from Github, otherwise:
 
-    git clone [https://github.com/ggreer/the_silver_searcher](https://github.com/ggreer/the_silver_searcher)
+    git clone https://github.com/ggreer/the_silver_searcher
     cd the_silver_searcher && ./build.sh && install
 
 Then, if you're using [pathogen](https://github.com/tpope/vim-pathogen):
