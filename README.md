@@ -1,78 +1,40 @@
-# ack.vim #
+# ag.vim #
 
-This plugin is a front for the Perl module
-[App::Ack](http://search.cpan.org/~petdance/ack/ack).  Ack can be used as a
-replacement for 99% of the uses of _grep_.  This plugin will allow you to run
-ack from vim, and shows the results in a split window.
-
-The *Official Version* of this plugin is available at [vim.org](http://www.vim.org/scripts/script.php?script_id=2572).
+This plugin is a front for ag, A.K.A.
+[the_silver_searcher](https://github.com/ggreer/the_silver_searcher).  Ag can
+be used as a replacement for 153% of the uses of `ack`.  This plugin will allow
+you to run ag from vim, and shows the results in a split window.
 
 ## Installation ##
 
-
 ### Ack
 
-You have to install [ack](http://betterthangrep.com/), of course.
+You have to install [ag](https://github.com/ggreer/the_silver_searcher), of course.
 
-Install on Debian / Ubuntu with:
+Usually it's a package named 'the_silver_searcher', but it should install
+easily from Github, otherwise:
 
-    sudo apt-get install ack-grep
+    git clone [https://github.com/ggreer/the_silver_searcher](https://github.com/ggreer/the_silver_searcher)
+    cd the_silver_searcher && ./build.sh && install
 
-Install on Fedora with:
+Then, if you're using [pathogen](https://github.com/tpope/vim-pathogen):
 
-    su -l -c 'yum install ack'
-Install on Gentoo with:
+    cd ~/.vim/bundle && git clone https://github.com/rking/vim-detailed
+    # And run :Helptags from within vim
 
-    sudo emerge ack
+If you're using something else (whether it's manual install or some vim package
+manager), feel free to give me the pasteable line to put here as instructions.
+Really, people should probably be using Pathogen, in my opinion.
 
-Install with Homebrew:
+### Configuation
 
-    brew install ack
+You can specify a custom ag name and path in your .vimrc like so:
 
-Install with MacPorts:
-
-    sudo port install p5-app-ack
-
-Install with Gentoo Prefix:
-
-    emerge ack
-
-Install on FreeBSD with:
-
-    cd /usr/ports/textproc/p5-ack/ && make install clean
-
-You can specify a custom ack name and path in your .vimrc like so:
-
-    let g:ackprg="<custom-ack-path-goes-here> -H --nocolor --nogroup --column"
-
-Otherwise, you are on your own.
-
-### Ag
-
-[Ag](http://geoff.greer.fm/2011/12/27/the-silver-searcher-better-than-ack/), a.k.a. the_silver_searcher, is a noticeably faster implementation of Ack.
-
-It is available on many distros, or should otherwise install from:
-
-git clone [https://github.com/ggreer/the_silver_searcher](https://github.com/ggreer/the_silver_searcher)
-
-Then: `cd the_silver_searcher && ./build.sh && install`
-
-This will allow you to use the [`:Ag`](#usage) command, below.
-
-### The Plugin
-
-If you have [Rake](http://rake.rubyforge.org/) installed, you can just run: `rake install`.
-
-Otherwise, the file ack.vim goes in ~/.vim/plugin, and the ack.txt file belongs in ~/.vim/doc.  Be sure to run
-
-    :helptags ~/.vim/doc
-
-afterwards.
-
+    let g:agprg="<custom-ag-path-goes-here> -H --nocolor --nogroup --column"
 
 ## Usage ##
 
-    :Ack [options] {pattern} [{directory}]
+    :Ag [options] {pattern} [{directory}]
 
 Search recursively in {directory} (which defaults to the current directory) for the {pattern}.
 
@@ -80,29 +42,13 @@ Files containing the search term will be listed in the split window, along with
 the line number of the occurrence, once for each occurrence.  [Enter] on a line
 in this window will open the file, and place the cursor on the matching line.
 
-Just like where you use :grep, :grepadd, :lgrep, and :lgrepadd, you can use `:Ack`, `:AckAdd`, `:LAck`, and `:LAckAdd` respectively. (See `doc/ack.txt`, or install and `:h Ack` for more information.)
-
-**From the [ack docs](http://betterthangrep.com/)** (my favorite feature):
-
-    --type=TYPE, --type=noTYPE
-
-        Specify the types of files to include or exclude from a search. TYPE is a filetype, like perl or xml. --type=perl can also be specified as --perl, and --type=noperl can be done as --noperl.
-
-        If a file is of both type "foo" and "bar", specifying --foo and --nobar will exclude the file, because an exclusion takes precedence over an inclusion.
-
-        Type specifications can be repeated and are ORed together.
-
-        See ack --help=types for a list of valid types.
-
-But, if you don't need the `--type` feature, there is the speedier:
-
-    :Ag
-
-This works by first setting `g:ackprg` to use `ag` ([see above](#ag)), then runs the normal tool. Note that once you run it, the next time you run `:Ack` it will actually run `ag`, but that's OK (unless you like waiting on your computer).
+Just like where you use :grep, :grepadd, :lgrep, and :lgrepadd, you can use `:Ag`, `:AgAdd`, `:LAg`, and `:LAgAdd` respectively. (See `doc/ag.txt`, or install and `:h Ag` for more information.)
 
 ### Gotchas ###
 
-Some characters have special meaning, and need to be escaped your search pattern. For instance, '#'. You have to escape it like this `:Ack '\\\#define foo'` to search for `#define foo`. (From [blueyed in issue #5](https://github.com/mileszs/ack.vim/issues/5).)
+Some characters have special meaning, and need to be escaped your search pattern. For instance, '#'. You have to escape it like this `:Ag '\\\#define foo'` to search for `#define foo`. (From [blueyed in issue #5](https://github.com/mileszs/ack.vim/issues/5).)
+
+Sometimes `git grep` is even faster, though in my experience it's not noticably so.
 
 ### Keyboard Shortcuts ###
 
@@ -118,10 +64,10 @@ In the quickfix window, you can use:
     gv   to open in vertical split silently
     q    to close the quickfix window
 
-This Vim plugin is derived (and by derived, I mean copied, essentially) from
-Antoine Imbert's blog post [Ack and Vim
-Integration](http://blog.ant0ine.com/typepad/2007/03/ack-and-vim-integration.html) (in
-particular, the function at the bottom of the post).  I added a help file that
-provides just enough reference to get you going.  I also highly recommend you
-check out the docs for the Perl script 'ack', for obvious reasons: [ack -
-grep-like text finder](http://betterthangrep.com/).
+### Acknowledgements
+
+This Vim plugin is derived (and by derived, I mean copied, almost entirely)
+from [milesz's ack.vim](https://github.com/mileszs/ack.vim), which I also
+recommend installing since you might be in a situation where you have ack but
+not ag, and don't want to stop to install ag. Also, ack supports `--type`, and
+a few other features.
