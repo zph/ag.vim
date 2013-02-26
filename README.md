@@ -19,7 +19,7 @@ easily from Github, otherwise:
 
 Then, if you're using [pathogen](https://github.com/tpope/vim-pathogen):
 
-    cd ~/.vim/bundle && git clone https://github.com/rking/vim-detailed
+    cd ~/.vim/bundle && git clone https://github.com/rking/ag.vim
     # And run :Helptags from within vim
 
 If you're using something else (whether it's manual install or some vim package
