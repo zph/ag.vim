@@ -7,7 +7,7 @@ you to run ag from vim, and shows the results in a split window.
 
 ## Installation ##
 
-### Ack
+### The Silver Searcher
 
 You have to install [ag](https://github.com/ggreer/the_silver_searcher), of course.
 
@@ -55,7 +55,7 @@ Sometimes `git grep` is even faster, though in my experience it's not noticably 
 In the quickfix window, you can use:
 
     o    to open (same as enter)
-    go   to preview file (open but maintain focus on ack.vim results)
+    go   to preview file (open but maintain focus on ag.vim results)
     t    to open in new tab
     T    to open in new tab silently
     h    to open in horizontal split
