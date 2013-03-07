@@ -2,8 +2,7 @@
 
 " Location of the ag utility
 if !exists("g:agprg")
-  let s:agcommand = executable('ag-grep') ? 'ag-grep' : 'ag'
-  let g:agprg=s:agcommand." --nocolor --nogroup --column"
+  let g:agprg="ag --column"
 endif
 
 if !exists("g:ag_apply_qmappings")
@@ -22,7 +21,7 @@ if !exists("g:ag_lhandler")
   let g:ag_lhandler="botright lopen"
 endif
 
-function! s:Ag(cmd, args)
+function! ag#Ag(cmd, args)
   redraw
   echo "Searching ..."
 
@@ -80,14 +79,14 @@ function! s:Ag(cmd, args)
   redraw!
 endfunction
 
-function! s:AgFromSearch(cmd, args)
+function! ag#AgFromSearch(cmd, args)
   let search =  getreg('/')
   " translate vim regular expression to perl regular expression.
   let search = substitute(search,'\(\\<\|\\>\)','\\b','g')
-  call s:Ag(a:cmd, '"' .  search .'" '. a:args)
+  call ag#Ag(a:cmd, '"' .  search .'" '. a:args)
 endfunction
 
-function! s:GetDocLocations()
+function! ag#GetDocLocations()
     let dp = ''
     for p in split(&rtp,',')
         let p = p.'/doc/'
@@ -98,16 +97,7 @@ function! s:GetDocLocations()
     return dp
 endfunction
 
-function! s:AgHelp(cmd,args)
-    let args = a:args.' '.s:GetDocLocations()
-    call s:Ag(a:cmd,args)
+function! ag#AgHelp(cmd,args)
+    let args = a:args.' '.ag#GetDocLocations()
+    call ag#Ag(a:cmd,args)
 endfunction
-
-command! -bang -nargs=* -complete=file Ag call s:Ag('grep<bang>',<q-args>)
-command! -bang -nargs=* -complete=file AgAdd call s:Ag('grepadd<bang>', <q-args>)
-command! -bang -nargs=* -complete=file AgFromSearch call s:AgFromSearch('grep<bang>', <q-args>)
-command! -bang -nargs=* -complete=file LAg call s:Ag('lgrep<bang>', <q-args>)
-command! -bang -nargs=* -complete=file LAgAdd call s:Ag('lgrepadd<bang>', <q-args>)
-command! -bang -nargs=* -complete=file AgFile call s:Ag('grep<bang> -g', <q-args>)
-command! -bang -nargs=* -complete=help AgHelp call s:AgHelp('grep<bang>',<q-args>)
-command! -bang -nargs=* -complete=help LAgHelp call s:AgHelp('lgrep<bang>',<q-args>)
