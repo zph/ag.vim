@@ -55,6 +55,14 @@ function! ag#Ag(cmd, args)
     let l:apply_mappings = g:ag_apply_qmappings
   endif
 
+  " If highlighting is on, highlight the search keyword.
+  if exists("g:aghighlight")
+    let @/=a:args
+    set hlsearch
+  end
+
+  redraw!
+
   if l:apply_mappings
     exec "nnoremap <silent> <buffer> q :ccl<CR>"
     exec "nnoremap <silent> <buffer> t <C-W><CR><C-W>T"
@@ -65,15 +73,8 @@ function! ag#Ag(cmd, args)
     exec "nnoremap <silent> <buffer> H <C-W><CR><C-W>K<C-W>b"
     exec "nnoremap <silent> <buffer> v <C-W><CR><C-W>H<C-W>b<C-W>J<C-W>t"
     exec "nnoremap <silent> <buffer> gv <C-W><CR><C-W>H<C-W>b<C-W>J"
+    echom "ag.vim keys: q=quit <cr>/t/h/v=enter/tab/split/vsplit go/T/H/gv=preview versions of same"
   endif
-
-  " If highlighting is on, highlight the search keyword.
-  if exists("g:aghighlight")
-    let @/=a:args
-    set hlsearch
-  end
-
-  redraw!
 endfunction
 
 function! ag#AgFromSearch(cmd, args)
