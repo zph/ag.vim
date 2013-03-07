@@ -111,5 +111,3 @@ command! -bang -nargs=* -complete=file LAgAdd call s:Ag('lgrepadd<bang>', <q-arg
 command! -bang -nargs=* -complete=file AgFile call s:Ag('grep<bang> -g', <q-args>)
 command! -bang -nargs=* -complete=help AgHelp call s:AgHelp('grep<bang>',<q-args>)
 command! -bang -nargs=* -complete=help LAgHelp call s:AgHelp('lgrep<bang>',<q-args>)
-command! -bang -nargs=+ -complete=file Ag let g:agprg = 'ag --nogroup --nocolor --column'
-      \|call s:Ag('grep<bang>',<q-args>)
