@@ -21,6 +21,14 @@ Then, if you're using [pathogen](https://github.com/tpope/vim-pathogen):
 
     cd ~/.vim/bundle && git clone https://github.com/rking/ag.vim
     # And run :Helptags from within vim
+    
+And if you're using [Vundle](https://github.com/gmarik/vundle):
+    
+    #Add this line to your .vimrc file
+    Bundle 'rking/ag.vim'
+    
+    #And then run the BundleInstall command from vim
+    :BundleInstall
 
 If you're using something else (whether it's manual install or some vim package
 manager), feel free to give me the pasteable line to put here as instructions.
