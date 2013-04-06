@@ -9,30 +9,23 @@ you to run ag from vim, and shows the results in a split window.
 
 ### The Silver Searcher
 
-You have to install [ag](https://github.com/ggreer/the_silver_searcher), of course.
+You have to first install [ag](https://github.com/ggreer/the_silver_searcher), itself. On Mac+Homebrew, Gentoo Linux, several others, there's package named `the_silver_searcher`, but if your OS/distro don't have one, the GitHub repo installs fine:
 
-Usually it's a package named '[the_silver_searcher](https://github.com/ggreer/the_silver_searcher)', but it should install
-easily from Github, otherwise:
+```sh
+git clone https://github.com/ggreer/the_silver_searcher ag && cd ag && ./build.sh && sudo make install
+```
 
-    git clone https://github.com/ggreer/the_silver_searcher
-    cd the_silver_searcher && ./build.sh && install
+* Then, if you're using [pathogen](https://github.com/tpope/vim-pathogen):
 
-Then, if you're using [pathogen](https://github.com/tpope/vim-pathogen):
+```sh
+cd ~/.vim/bundle && git clone https://github.com/rking/ag.vim ag && vim +HelpTags
+```
 
-    cd ~/.vim/bundle && git clone https://github.com/rking/ag.vim
-    # And run :Helptags from within vim
-    
-And if you're using [Vundle](https://github.com/gmarik/vundle):
-    
-    #Add this line to your .vimrc file
-    Bundle 'rking/ag.vim'
-    
-    #And then run the BundleInstall command from vim
-    :BundleInstall
+* Or, if you're using [Vundle](https://github.com/gmarik/vundle):
 
-If you're using something else (whether it's manual install or some vim package
-manager), feel free to give me the pasteable line to put here as instructions.
-Really, people should probably be using Pathogen, in my opinion.
+```sh
+echo "Bundle 'rking/ag.vim'" >> ~/.vimrc && vim +BundleInstall
+```
 
 ### Configuation
 
