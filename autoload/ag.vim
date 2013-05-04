@@ -96,17 +96,17 @@ function! ag#AgFromSearch(cmd, args)
 endfunction
 
 function! ag#GetDocLocations()
-    let dp = ''
-    for p in split(&rtp,',')
-        let p = p.'/doc/'
-        if isdirectory(p)
-            let dp = p.'*.txt '.dp
-        endif
-    endfor
-    return dp
+  let dp = ''
+  for p in split(&rtp,',')
+    let p = p.'/doc/'
+    if isdirectory(p)
+      let dp = p.'*.txt '.dp
+    endif
+  endfor
+  return dp
 endfunction
 
 function! ag#AgHelp(cmd,args)
-    let args = a:args.' '.ag#GetDocLocations()
-    call ag#Ag(a:cmd,args)
+  let args = a:args.' '.ag#GetDocLocations()
+  call ag#Ag(a:cmd,args)
 endfunction
