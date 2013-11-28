@@ -81,10 +81,6 @@ function! ag#Ag(cmd, args)
     " ^wJ  slam it to the floor
     " 80^w-  Decrease this window by (at most) 80 lines.
     " 5^w+  Undecrease the quickfix window by 5, so you can see what you're doing
-
-    " TODO: j  Now you probably want to do something on the next line
-
-    echom "ag.vim keys: q=quit <cr>/t/h/v=enter/tab/split/vsplit go/T/H/gv=preview versions of same"
   endif
 endfunction
 
